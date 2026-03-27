@@ -12,6 +12,7 @@ import Data.Char (isSpace)
 import Text.Printf (printf)
 import Data.IORef
 import Data.Unique (newUnique, hashUnique)
+import System.Environment (lookupEnv)
 
 data FishRecord = FishRecord
   { species  :: String
@@ -619,7 +620,9 @@ requireLogin sessionsRef = do
 main :: IO ()
 main = do
     sessionsRef <- newIORef []
-    scotty 3000 $ do
+    mPort <- lookupEnv "PORT"
+    let port = maybe 3000 read mPort
+    scotty port $ do
         get "/" $
             html landingPage
 
