@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fish Sustainability</title>
+    <style>
+        body {
+            background: #0b0b1a;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .card {
+            background: #111133;
+            padding: 30px;
+            margin: 50px auto;
+            width: 400px;
+            border-radius: 15px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background: purple;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Fish Sustainability Analyzer</h1>
+
+<div class="card">
+    <form method="post" action="/analyze">
+        <input type="text" name="species" placeholder="Enter species"><br>
+        <input type="text" name="area" placeholder="Enter area"><br>
+        <button type="submit">Analyze</button>
+    </form>
+</div>
+
+</body>
+</html>
