@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["ghc", "cabal-install"]
+
+[phases.build]
+cmds = ["cabal update", "cabal build"]
+
+[start]
+cmd = "cabal run"
