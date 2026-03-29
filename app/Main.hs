@@ -619,9 +619,11 @@ requireLogin sessionsRef = do
 
 main :: IO ()
 main = do
+    putStrLn "SERVER STARTING..."
     sessionsRef <- newIORef []
     mPort <- lookupEnv "PORT"
     let port = maybe 3000 read mPort
+    putStrLn ("Running on port: " ++ show port)
     scotty port $ do
         get "/" $
             html landingPage
