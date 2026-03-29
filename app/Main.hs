@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Network.Wai.Handler.Warp (setPort, setHost, defaultSettings)
+import Web.Scotty.Trans (Options(..))
 import Web.Scotty
 import qualified Data.Text.Lazy as TL
 import qualified Data.Text as T
@@ -626,6 +628,8 @@ main = do
 
     putStrLn ("Running on port: " ++ show port)
 
-    scotty port $ do
-        get "/" $ do
-            text "Server is running"
+    scottyOpts
+        (Options 0 (setPort port $ setHost "0.0.0.0" defaultSettings))
+        $ do
+            get "/" $ do
+                text "Server is running"
