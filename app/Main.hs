@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Web.Scotty.Trans (Options(..))
+import Network.Wai.Handler.Warp (setPort, setHost, defaultSettings)
 import Web.Scotty
 import qualified Data.Text.Lazy as TL
 import qualified Data.Text as T
@@ -624,7 +626,7 @@ main = do
     mPort <- lookupEnv "PORT"
     let port = maybe 3000 read mPort
     putStrLn ("Running on port: " ++ show port)
-    scotty port $ do
+    scottyOpts (Options 0 (setPort port $ setHost "0.0.0.0" defaultSettings)) $ do
         get "/" $ do
     	    text "Root route works"
 
