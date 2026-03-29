@@ -15,5 +15,5 @@ executable fish-project
         aeson,
         text,
         wai-middleware-static,
-	warp
+        warp
     default-language: Haskell2010

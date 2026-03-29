@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Web.Scotty
 import Web.Scotty.Trans (Options(..))
 import Network.Wai.Handler.Warp (setPort, setHost, defaultSettings)
-import Web.Scotty
 import qualified Data.Text.Lazy as TL
 import qualified Data.Text as T
 import qualified Data.ByteString.Lazy as BL
@@ -626,9 +626,10 @@ main = do
     mPort <- lookupEnv "PORT"
     let port = maybe 3000 read mPort
     putStrLn ("Running on port: " ++ show port)
+
     scottyOpts (Options 0 (setPort port $ setHost "0.0.0.0" defaultSettings)) $ do
         get "/" $ do
-    	    text "Root route works"
+            text "Root route works"
 
         get "/login" $
             html (loginPage "")
@@ -642,12 +643,12 @@ main = do
             let e = trimSpaces (TL.unpack email)
             let p = trimSpaces (TL.unpack password)
 
-            if not (isValidName n)
-            then html (loginPage "Name must be at least 2 characters.")
-            else if not (isValidEmail e)
-            then html (loginPage "Please enter a valid email address.")
-            else if not (isValidPassword p)
-            then html (loginPage "Password must be at least 6 characters long.")
+            if not (isValidName n) then
+                html (loginPage "Name must be at least 2 characters.")
+            else if not (isValidEmail e) then
+                html (loginPage "Please enter a valid email address.")
+            else if not (isValidPassword p) then
+                html (loginPage "Password must be at least 6 characters long.")
             else do
                 token <- liftIO makeSessionToken
                 liftIO $ modifyIORef sessionsRef (\xs -> (token, TL.pack n) : xs)
@@ -762,15 +763,15 @@ main = do
                     let recordList = V.toList records
                     let filtered = sortOn year (filterRecords (TL.unpack sp) (TL.unpack ar) recordList)
 
-                    if null filtered
-                    then html $
-                        mconcat
-                            [ "<!DOCTYPE html><html><head><title>No Data</title><style>"
-                            , "body{background:linear-gradient(120deg,#15171d,#1b1d23,#16181e);color:white;font-family:'Segoe UI',sans-serif;text-align:center;padding:50px;}"
-                            , ".card{background:linear-gradient(180deg,#1d2027 0%, #171920 100%);border:1px solid rgba(255,255,255,0.06);padding:30px;margin:auto;width:60%;border-radius:15px;}"
-                            , "a{display:inline-block;margin-top:18px;padding:12px 22px;background:#f3f4f6;color:#15171d;border-radius:10px;text-decoration:none;font-weight:700;}"
-                            , "</style></head><body><div class='card'><h1>No matching data found</h1><p>Please try another species and area.</p><a href='/dashboard'>Go Back</a></div></body></html>"
-                            ]
+                    if null filtered then
+                        html $
+                            mconcat
+                                [ "<!DOCTYPE html><html><head><title>No Data</title><style>"
+                                , "body{background:linear-gradient(120deg,#15171d,#1b1d23,#16181e);color:white;font-family:'Segoe UI',sans-serif;text-align:center;padding:50px;}"
+                                , ".card{background:linear-gradient(180deg,#1d2027 0%, #171920 100%);border:1px solid rgba(255,255,255,0.06);padding:30px;margin:auto;width:60%;border-radius:15px;}"
+                                , "a{display:inline-block;margin-top:18px;padding:12px 22px;background:#f3f4f6;color:#15171d;border-radius:10px;text-decoration:none;font-weight:700;}"
+                                , "</style></head><body><div class='card'><h1>No matching data found</h1><p>Please try another species and area.</p><a href='/dashboard'>Go Back</a></div></body></html>"
+                                ]
                     else do
                         let yearsList = getYears filtered
                         let catches = getCatchValues filtered
