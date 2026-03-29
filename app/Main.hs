@@ -625,8 +625,8 @@ main = do
     let port = maybe 3000 read mPort
     putStrLn ("Running on port: " ++ show port)
     scotty port $ do
-        get "/" $
-            html landingPage
+        get "/" $ do
+    	    text "Root route works"
 
         get "/login" $
             html (loginPage "")
