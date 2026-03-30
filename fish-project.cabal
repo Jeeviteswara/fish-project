@@ -16,4 +16,5 @@ executable fish-project
         text,
         wai-middleware-static,
         warp
+    ghc-options:      -threaded
     default-language: Haskell2010
