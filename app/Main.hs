@@ -629,7 +629,7 @@ main = do
 
     scottyOpts (Options 0 (setPort port $ setHost "0.0.0.0" defaultSettings) False) $ do
         get "/" $ do
-            text "Root route works"
+            html landingPage
 
         get "/login" $
             html (loginPage "")
