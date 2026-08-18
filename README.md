@@ -47,5 +47,15 @@ fish-project/
 │   └── data1.csv
 ├── Dockerfile
 ├── fish-project.cabal
+
+## Live Demo
+
+**[Fish Stock Sustainability](https://fish-project-gtii.onrender.com)**
+
+> The free hosting instance may take some time to respond after a period of inactivity.
+
+## Repository
+
+**[GitHub Repository](https://github.com/Jeeviteswara/fish-project)**
 ├── nixpacks.toml
 └── README.md
