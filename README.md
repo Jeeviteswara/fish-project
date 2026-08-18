@@ -39,7 +39,7 @@ The application uses a Haskell backend with recursive data-processing functions 
  
 ## Project Structure 
  
-```text
+```text 
 fish-project/ 
 ├── app/ 
 │   └── Main.hs 
@@ -49,3 +49,7 @@ fish-project/
 ├── fish-project.cabal 
 ├── nixpacks.toml 
 └── README.md
+
+## Live Demo
+
+[Fish Stock Sustainability](https://fish-project-gtii.onrender.com)
