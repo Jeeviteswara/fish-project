@@ -52,7 +52,7 @@ fish-project/
 
 **[Fish Stock Sustainability](https://fish-project-gtii.onrender.com)**
 
-> The free hosting instance may take some time to respond after a period of inactivity.
+> The free hosting instance may take some time to respond after a period of inactivity. 
 
 ## Repository
 
